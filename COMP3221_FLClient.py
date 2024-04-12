@@ -3,6 +3,9 @@ import socket
 import json
 import select
 
+import torch
+import torch.nn as nn
+
 class Client:
     def __init__(self, client_id, port, opt_method):
         self.client_id = client_id
@@ -23,17 +26,8 @@ class Client:
                         self.process_packet(json.loads(packet.decode('utf-8')))
 
     def process_packet(self, decoded_packet: dict):
-        # packet = {'node': 'A', 'neighbours': {'B':(via, cost B to A)}}
-        neighbour = decoded_packet['node']
-        neighbour_table = decoded_packet['neighbours']
-        self.neighbours[neighbour]['heartbeat'] = 11
-        if decoded_packet.get('link_cost_update') != None:
-            if float(decoded_packet['link_cost_update']) != self.neighbours[neighbour]['cost']:
-                self.neighbours[neighbour]['cost'] = float(decoded_packet['link_cost_update'])
-                self.update_reachability_matrix(neighbour, neighbour_table)
-                self.update = True
-        else:
-            self.update_reachability_matrix(neighbour, neighbour_table)
+        # packet = {  }
+        pass
 
     def send_to(self, s):
         with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as s:
@@ -85,9 +79,10 @@ class Client:
 
     def start(self):
         self.training_dataset, self.testing_dataset = self.load_dataset()
-        print(self.training_dataset[0:5])
-        print(self.testing_dataset[0:5])
-
+        with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
+            s.connect(('localhost', 6000))
+            s.sendall(b'Hello Boss')
+            
 
 if __name__ == "__main__":
     # python COMP3221_FLClient.py <Client-id> <Port-Client> <Opt-Method>
