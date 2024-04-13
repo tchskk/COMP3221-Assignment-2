@@ -5,25 +5,54 @@ import select
 
 import torch
 import torch.nn as nn
+from torch.utils.data import DataLoader
 
 import numpy as np
+import copy
+
+class LinearRegressionModel(nn.Module):
+    def __init__(self, input_size = 8):
+        super(self.__class__, self).__init__()
+        # Create a linear transformation to the incoming data
+        self.linear = nn.Linear(input_size, 1)
+
+    # Define how the model is going to be run, from input to output
+    def forward(self, x):
+        # Apply linear transformation
+        output = self.linear(x)
+        return output.reshape(-1)
+
+initialize_model = LinearRegressionModel()
 
 class Client:
     def __init__(self, client_id, port, opt_method):
         self.client_id = client_id
         self.port = port
         self.opt_method = opt_method
-        self.X_train = None
-        self.y_train = None
-        self.X_test = None
-        self.y_test = None
-        self.model = None
+
+        self.X_train, self.y_train, self.X_test, self.y_test = self.load_dataset()
+        self.train_data = [(x, y) for x, y in zip(self.X_train, self.y_train)]
+        self.test_data = [(x, y) for x, y in zip(self.X_test, self.y_test)]
+
+        # Define dataloader for iterable sample over a dataset
+        self.batch_size = 25
+        if self.opt_method == 0:
+            self.batch_size = len(self.train_data)
+        self.trainloader = DataLoader(self.train_data, batch_size = self.batch_size)
+        self.testloader = DataLoader(self.test_data, batch_size = len(self.test_data))
+
+        self.model = copy.deepcopy(initialize_model)
         self.loss = nn.MSELoss()
         self.learning_rate = 0.01
         self.epochs = 5
+        self.optimizer = torch.optim.SGD(self.model.parameters(), lr=self.learning_rate)
+
+    def set_parameters(self, model):
+        for old_param, new_param in zip(self.model.parameters(), model.parameters()):
+            old_param.data = new_param.data.clone()
 
     def train(self):
-        LOSS = 0
+        loss = 0
         self.model.train()
         for epoch in range(self.epochs):
             self.model.train()
@@ -39,7 +68,7 @@ class Client:
         self.model.eval()
         mse = 0
         for X, y in self.testing_dataset:
-            y_pred = self.model(x)
+            y_pred = self.model(X)
             # Calculate evaluation metrics
             mse += self.loss(y_pred, y)
             print(str(self.id) + ", MSE of client ",self.id, " is: ", mse)
@@ -124,8 +153,6 @@ class Client:
         return X_train, y_train, X_test, y_test
 
     def start(self):
-        self.X_train, self.y_train, self.X_test, self.y_test = self.load_dataset()
-        
         """with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
             s.connect(('localhost', 6000))
             s.sendall(b'Hello Boss')"""
@@ -139,6 +166,6 @@ if __name__ == "__main__":
 
     client_id = sys.argv[1]
     port = int(sys.argv[2])
-    opt_method = sys.argv[3]
+    opt_method = int(sys.argv[3])
     client = Client(client_id, port, opt_method)
     client.start()
