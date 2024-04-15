@@ -1,0 +1,268 @@
+Global Iteration: 1
+Training MSE: 274969.5111860796
+Testing MSE: 192556.421875
+
+Global Iteration: 2
+Training MSE: 178370.7126242898
+Testing MSE: 122645.9453125
+
+Global Iteration: 3
+Training MSE: 102612.63503196024
+Testing MSE: 68439.9140625
+
+Global Iteration: 4
+Training MSE: 47694.78668767756
+Testing MSE: 29937.720703125
+
+Global Iteration: 5
+Training MSE: 13617.052984064276
+Testing MSE: 7139.52587890625
+
+Global Iteration: 6
+Training MSE: 377.7202881249515
+Testing MSE: 26.269681930541992
+
+Global Iteration: 7
+Training MSE: 23.619191310622476
+Testing MSE: 16.103939056396484
+
+Global Iteration: 8
+Training MSE: 13.49430070140145
+Testing MSE: 9.405932426452637
+
+Global Iteration: 9
+Training MSE: 6.829150080680847
+Testing MSE: 4.741349220275879
+
+Global Iteration: 10
+Training MSE: 3.245427649129521
+Testing MSE: 2.380837917327881
+
+Global Iteration: 11
+Training MSE: 2.235050466927615
+Testing MSE: 2.3009979724884033
+
+Global Iteration: 12
+Training MSE: 2.0571424500508746
+Testing MSE: 2.1486828327178955
+
+Global Iteration: 13
+Training MSE: 2.0084887566891583
+Testing MSE: 2.115683078765869
+
+Global Iteration: 14
+Training MSE: 2.0031627023761924
+Testing MSE: 1.8341457843780518
+
+Global Iteration: 15
+Training MSE: 1.9292282475666567
+Testing MSE: 2.051635503768921
+
+Global Iteration: 16
+Training MSE: 1.9336173371835188
+Testing MSE: 1.791232943534851
+
+Global Iteration: 17
+Training MSE: 1.8764911849390375
+Testing MSE: 1.999544382095337
+
+Global Iteration: 18
+Training MSE: 1.8587946593761444
+Testing MSE: 1.7269457578659058
+
+Global Iteration: 19
+Training MSE: 1.8026904423128474
+Testing MSE: 1.7139842510223389
+
+Global Iteration: 20
+Training MSE: 1.7966088530692188
+Testing MSE: 1.9248563051223755
+
+Global Iteration: 21
+Training MSE: 1.771558710119941
+Testing MSE: 1.9053659439086914
+
+Global Iteration: 22
+Training MSE: 1.7837683111429214
+Testing MSE: 1.6559491157531738
+
+Global Iteration: 23
+Training MSE: 1.7152296480807392
+Testing MSE: 1.6461015939712524
+
+Global Iteration: 24
+Training MSE: 1.7144801142540844
+Testing MSE: 1.8334108591079712
+
+Global Iteration: 25
+Training MSE: 1.6814207217910073
+Testing MSE: 1.8569566011428833
+
+Global Iteration: 26
+Training MSE: 1.6782868192954497
+Testing MSE: 1.8116074800491333
+
+Global Iteration: 27
+Training MSE: 1.6644677235321566
+Testing MSE: 1.7912660837173462
+
+Global Iteration: 28
+Training MSE: 1.6396068239753898
+Testing MSE: 1.8172000646591187
+
+Global Iteration: 29
+Training MSE: 1.6359335157004269
+Testing MSE: 1.772579550743103
+
+Global Iteration: 30
+Training MSE: 1.6221923137252983
+Testing MSE: 1.7925078868865967
+
+Global Iteration: 31
+Training MSE: 1.6793313365090978
+Testing MSE: 1.5096203088760376
+
+Global Iteration: 32
+Training MSE: 1.5921307680281727
+Testing MSE: 1.7694076299667358
+
+Global Iteration: 33
+Training MSE: 1.5997905013236133
+Testing MSE: 1.5193315744400024
+
+Global Iteration: 34
+Training MSE: 1.5830990807576613
+Testing MSE: 1.7161943912506104
+
+Global Iteration: 35
+Training MSE: 1.607126765630462
+Testing MSE: 1.5019865036010742
+
+Global Iteration: 36
+Training MSE: 1.5748172077265652
+Testing MSE: 1.4986069202423096
+
+Global Iteration: 37
+Training MSE: 1.5493602129546078
+Testing MSE: 1.725492000579834
+
+Global Iteration: 38
+Training MSE: 1.549236691810868
+Testing MSE: 1.689052700996399
+
+Global Iteration: 39
+Training MSE: 1.5143711146983234
+Testing MSE: 1.5144182443618774
+
+Global Iteration: 40
+Training MSE: 1.6032534810629757
+Testing MSE: 1.4452141523361206
+
+Global Iteration: 41
+Training MSE: 1.5260588458993218
+Testing MSE: 1.7010490894317627
+
+Global Iteration: 42
+Training MSE: 1.4973685985261742
+Testing MSE: 1.4953938722610474
+
+Global Iteration: 43
+Training MSE: 1.5877806225960907
+Testing MSE: 1.431313395500183
+
+Global Iteration: 44
+Training MSE: 1.549414610998197
+Testing MSE: 1.4246101379394531
+
+Global Iteration: 45
+Training MSE: 1.486098223111846
+Testing MSE: 1.4820663928985596
+
+Global Iteration: 46
+Training MSE: 1.483438726175915
+Testing MSE: 1.479134202003479
+
+Global Iteration: 47
+Training MSE: 1.495788885788484
+Testing MSE: 1.6635347604751587
+
+Global Iteration: 48
+Training MSE: 1.4765025594017722
+Testing MSE: 1.471285104751587
+
+Global Iteration: 49
+Training MSE: 1.474592382257635
+Testing MSE: 1.4685717821121216
+
+Global Iteration: 50
+Training MSE: 1.4776511300693858
+Testing MSE: 1.4513510465621948
+
+Global Iteration: 51
+Training MSE: 1.4684504771774465
+Testing MSE: 1.4627519845962524
+
+Global Iteration: 52
+Training MSE: 1.46640168401328
+Testing MSE: 1.4602338075637817
+
+Global Iteration: 53
+Training MSE: 1.4641202634031123
+Testing MSE: 1.4575133323669434
+
+Global Iteration: 54
+Training MSE: 1.4617501944303513
+Testing MSE: 1.4550600051879883
+
+Global Iteration: 55
+Training MSE: 1.4581952853636309
+Testing MSE: 1.4522109031677246
+
+Global Iteration: 56
+Training MSE: 1.4553851864554666
+Testing MSE: 1.4492741823196411
+
+Global Iteration: 57
+Training MSE: 1.493929704481905
+Testing MSE: 1.4759600162506104
+
+Global Iteration: 58
+Training MSE: 1.4609315977855162
+Testing MSE: 1.4342777729034424
+
+Global Iteration: 59
+Training MSE: 1.4498754428191618
+Testing MSE: 1.4428211450576782
+
+Global Iteration: 60
+Training MSE: 1.4472750682722437
+Testing MSE: 1.4405161142349243
+
+Global Iteration: 61
+Training MSE: 1.445953285152262
+Testing MSE: 1.438558578491211
+
+Global Iteration: 62
+Training MSE: 1.4736553220586344
+Testing MSE: 1.398330569267273
+
+Global Iteration: 63
+Training MSE: 1.462231134826487
+Testing MSE: 1.6166688203811646
+
+Global Iteration: 64
+Training MSE: 1.4799715835939753
+Testing MSE: 1.429609775543213
+
+Global Iteration: 65
+Training MSE: 1.4751080491326072
+Testing MSE: 1.3932329416275024
+
+Global Iteration: 66
+Training MSE: 1.4659712131727827
+Testing MSE: 1.389970302581787
+
+Global Iteration: 67
+Training MSE: 1.515218279578469
+Testing MSE: 1.3671032190322876
+
