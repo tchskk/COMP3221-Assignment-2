@@ -1,6 +1,5 @@
 import sys
 import socket
-import threading
 import pickle
 
 import torch
@@ -8,7 +7,6 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 
 import numpy as np
-import copy
 
 class Client:
     def __init__(self, client_id, port, opt_method):
@@ -20,7 +18,6 @@ class Client:
         self.train_data = [(x, y) for x, y in zip(self.X_train, self.y_train)]
         self.test_data = [(x, y) for x, y in zip(self.X_test, self.y_test)]
 
-        # Define dataloader for iterable sample over a dataset
         self.batch_size = 64
         if self.opt_method == 0:
             self.batch_size = len(self.train_data)
@@ -166,4 +163,7 @@ if __name__ == "__main__":
     port = int(sys.argv[2])
     opt_method = int(sys.argv[3])
     client = Client(client_id, port, opt_method)
+    filename = f"{client_id}_log.txt"
+    with open(filename, 'w') as f:
+        f.truncate(0)
     client.start()

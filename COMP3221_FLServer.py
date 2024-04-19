@@ -7,13 +7,13 @@ import pickle
 import torch
 import torch.nn as nn
 
-import copy
-
 class Server:
     def __init__(self, port, subsampling):
         self.port = port
-        self.subsampling = subsampling #0 means all clients, 0-5
-        self.num_glob_iters = 1000000 # T
+        self.subsampling = 5
+        if subsampling > 0:
+            self.subsampling = subsampling
+        self.num_glob_iters = 100
         self.global_model = self.LinearRegressionModel()
         self.clients = {}
         self.client_ids = []
@@ -24,18 +24,15 @@ class Server:
     class LinearRegressionModel(nn.Module):
         def __init__(self, input_size = 8):
             super(self.__class__, self).__init__()
-            # Create a linear transformation to the incoming data
             self.linear = nn.Linear(input_size, 1)
 
-        # Define how the model is going to be run, from input to output
         def forward(self, x):
-            # Apply linear transformation
             output = self.linear(x)
             return output.reshape(-1)
 
     def listen(self, server:socket.socket):
         server.listen(5)
-        while len(self.client_ids) < 5:
+        while len(self.client_ids) < self.subsampling:
             conn,_ = server.accept()
             print("accepted client")
             if len(self.client_ids) == 0:
@@ -85,18 +82,14 @@ class Server:
             print("Broadcasting new global model")
             for client_id in self.client_ids:
                 conn = self.clients[client_id]['connection']
-                conn.send(pickle.dumps(self.global_model.state_dict()))
-                #print(self.global_model.state_dict())
                 count += 1
             print(f"Global Iteration {global_count}")
             print(f"Total Number of clients: {count}")
             for i in range(count):
-                # packet = {'client_id': 'client1, 'local_model': nn.Module, ''}
                 client_id = self.client_ids[i]
                 print(f"Getting local model from {client_id}")
                 conn = self.clients[client_id]['connection']
                 local_model = pickle.loads(conn.recv(4096))
-                #print(local_model)
                 client_models[client_id] = local_model
 
             self.aggregate_parameters(client_models)
