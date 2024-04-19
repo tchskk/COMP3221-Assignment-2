@@ -59,6 +59,6 @@ Make sure to have the libraries/packages below installed :
 1. Using the file syntax from above, execute each client and server in its own terminal
 2. Wait 30 seconds after first client connects then global iteration will start
 3. Wait until total global iterations reached then program will stop for each terminal
-4. For maunal evaluation, check the terminal output or the log files
+4. For manual evaluation, check the terminal output or the log files
 
 ### Thank you and have fun :)
