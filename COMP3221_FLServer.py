@@ -43,7 +43,6 @@ class Server:
             client_id, sample_size = self.process_packet(pickle.loads(packet))
             self.client_ids.append(client_id)
             self.clients[client_id] = {'connection': conn, 'sample_size': sample_size}
-            self.total_datasize += sample_size
 
     def process_packet(self, decoded_packet: dict):
         # packet = { 'client_id': 'client1', 'batch_size': int() }
@@ -58,11 +57,16 @@ class Server:
         global_state_dict = self.global_model.state_dict()
         for key in global_state_dict.keys():
             global_state_dict[key] = torch.zeros_like(global_state_dict[key])
-
-        for client_id, local_state_dict in client_model_states.items():
+        items = list(client_model_states.items())
+        random.shuffle(items)
+        count = 0
+        for client_id, local_state_dict in items:
+            if count == self.subsampling:
+                break
             for key in global_state_dict.keys():
                 contribution_scale = self.clients[client_id]['sample_size'] / self.total_datasize
                 global_state_dict[key] += local_state_dict[key] * contribution_scale
+            count += 1
 
         self.global_model.load_state_dict(global_state_dict)
 
@@ -84,8 +88,6 @@ class Server:
             client_models = {}
             print("Broadcasting new global model")
             for client_id in self.client_ids:
-                if count == self.subsampling:
-                    break
                 conn = self.clients[client_id]['connection']
                 conn.send(pickle.dumps(self.global_model.state_dict()))
                 self.total_datasize += self.clients[client_id]['sample_size']
