@@ -7,6 +7,8 @@ import pickle
 import torch
 import torch.nn as nn
 
+import random
+
 class Server:
     def __init__(self, port, subsampling):
         self.port = port
@@ -32,7 +34,7 @@ class Server:
 
     def listen(self, server:socket.socket):
         server.listen(5)
-        while len(self.client_ids) < self.subsampling:
+        while len(self.client_ids) < 5:
             conn,_ = server.accept()
             print("accepted client")
             if len(self.client_ids) == 0:
@@ -78,11 +80,15 @@ class Server:
         global_count = 0
         while global_count < self.num_glob_iters:
             count = 0
+            self.total_datasize = 0
             client_models = {}
             print("Broadcasting new global model")
             for client_id in self.client_ids:
+                if count == self.subsampling:
+                    break
                 conn = self.clients[client_id]['connection']
                 conn.send(pickle.dumps(self.global_model.state_dict()))
+                self.total_datasize += self.clients[client_id]['sample_size']
                 count += 1
             print(f"Global Iteration {global_count}")
             print(f"Total Number of clients: {count}")
@@ -105,7 +111,7 @@ class Server:
         server.close()
 
 if __name__ == "__main__":
-    # python COMP3221_FLClient.py <Client-id> <Port-Client> <Opt-Method>
+    # python COMP3221_FLServer.py <Port-Client> <Opt-Method>
     if len(sys.argv) != 3:
         print("Wrong arguments")
         sys.exit(1)
