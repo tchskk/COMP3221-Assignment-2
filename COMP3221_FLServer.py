@@ -73,7 +73,7 @@ class Server:
         while not self.first_handshake:
             pass
         self.first_handshake = False
-        time.sleep(10)
+        time.sleep(30)
 
         global_count = 0
         while global_count < self.num_glob_iters:
@@ -82,6 +82,7 @@ class Server:
             print("Broadcasting new global model")
             for client_id in self.client_ids:
                 conn = self.clients[client_id]['connection']
+                conn.send(pickle.dumps(self.global_model.state_dict()))
                 count += 1
             print(f"Global Iteration {global_count}")
             print(f"Total Number of clients: {count}")
