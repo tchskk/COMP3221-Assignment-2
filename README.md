@@ -56,9 +56,20 @@ Make sure to have the libraries/packages below installed :
 
 ### Execution of Program
 
-1. Using the file syntax from above, execute each client and server in its own terminal
+1. Using the file syntax from above, Firstly run the server program then the client program for each client in its own terminal
 2. Wait 30 seconds after first client connects then global iteration will start
-3. Wait until total global iterations reached then program will stop for each terminal
-4. For maunal evaluation, check the terminal output or the log files
+3. While Server program has not ended, you can start up any client and the client will start computing its model etc in the next iteration (Keep in mind that the program will only accept a maximum of 5 clients)
+4. Wait until total global iterations reached then program will stop for each terminal
+5. For manual evaluation, check the terminal output or the log files
+
+## Additional Notes
+
+### Reproducability
+
+Because of the assignment specifications that instructs to initialize random weights for the initialization of the global server model, resulting MSEs may vary. I have also tried to disable this random initialization caused by the library (for debugging and testing) by using various methods but to no avail. But because this lines with the assignments specifications I expect no penalties will be made...
+
+### Experiments Graphs
+
+I have included a python notebook (slight modification of week 6 tutorial notebook) to help me with producing the graphs used in the report...
 
 ### Thank you and have fun :)
