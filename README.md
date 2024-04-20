@@ -41,7 +41,7 @@ Firstly, store all the csv files in the folder `FLData` or the program will not 
 
 ### Libraries used
 
-Make sure to have the libraries/packages below installed :
+Make sure to have the libraries/packages below installed (See requirements.txt for the versions):
 
     import sys
     import socket
