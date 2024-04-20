@@ -56,9 +56,10 @@ Make sure to have the libraries/packages below installed :
 
 ### Execution of Program
 
-1. Using the file syntax from above, execute each client and server in its own terminal
+1. Using the file syntax from above, Firstly run the server program then the client program for each client in its own terminal
 2. Wait 30 seconds after first client connects then global iteration will start
-3. Wait until total global iterations reached then program will stop for each terminal
-4. For manual evaluation, check the terminal output or the log files
+3. While Server program has not ended, you can start up any client and the client will start computing its model etc in the next iteration (Keep in mind that the program will only accept a maximum of 5 clients)
+4. Wait until total global iterations reached then program will stop for each terminal
+5. For manual evaluation, check the terminal output or the log files
 
 ### Thank you and have fun :)
