@@ -7,6 +7,10 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 
 import numpy as np
+np.random.seed(0)
+
+import matplotlib
+import matplotlib.pyplot as plt
 
 class Client:
     def __init__(self, client_id, port, opt_method):
@@ -29,6 +33,7 @@ class Client:
         self.learning_rate = 0.00025
         self.epochs = 2
         self.optimizer = torch.optim.SGD(self.model.parameters(), lr=self.learning_rate)
+        self.test_mse = []
     
     class LinearRegressionModel(nn.Module):
         def __init__(self, input_size = 8):
@@ -65,8 +70,8 @@ class Client:
         return average_loss
 
     def log_result(self, mse_train, mse_test, round):
-        mse_train = self.train()
-        mse_test = self.test()
+        mse_train = mse_train
+        mse_test = mse_test
         log_file = f"{self.client_id}_log.txt"
         with open(log_file, 'a') as f:
             f.write(f"Global Iteration: {str(round)}\n")
@@ -143,6 +148,7 @@ class Client:
             print("Received new global model")
             self.update_model(global_model_state)
             mse = self.test()
+            self.test_mse.append(mse)
             print(f"Testing MSE: {str(mse)}")
             print("Local training ...")
             loss = self.train()
@@ -152,6 +158,13 @@ class Client:
             client.send(pickle.dumps(self.model.state_dict()))
             count+=1
         client.close()
+
+        plt.figure(1,figsize=(5, 5))
+        plt.plot(self.test_mse[30:], label="FedAvg", linewidth  = 1)
+        plt.legend(loc='upper right', prop={'size': 12}, ncol=2)
+        plt.ylabel('Testing MSE')
+        plt.xlabel('Global rounds')
+        plt.show()
 
 if __name__ == "__main__":
     # python COMP3221_FLClient.py <Client-id> <Port-Client> <Opt-Method>

@@ -60,16 +60,7 @@ Make sure to have the libraries/packages below installed (See requirements.txt f
 2. Wait 30 seconds after first client connects then global iteration will start
 3. While Server program has not ended, you can start up any client and the client will start computing its model etc in the next iteration (Keep in mind that the program will only accept a maximum of 5 clients)
 4. Wait until total global iterations reached then program will stop for each terminal
-5. For manual evaluation, check the terminal output or the log files
-
-## Additional Notes
-
-### Reproducability
-
-Because of the assignment specifications that instructs to initialize random weights for the initialization of the global server model, resulting MSEs may vary. I have also tried to disable this random initialization caused by the library (for debugging and testing) by using various methods but to no avail. But because this lines with the assignments specifications I expect no penalties will be made...
-
-### Experiments Graphs
-
-I have included a python notebook (slight modification of week 6 tutorial notebook) to help me with producing the graphs used in the report...
+4. A Graph of The Testing MSE will be displayed once socket conenction closes, to Exit the program exit the graph window...
+6. For manual evaluation, check the terminal output or the log files
 
 ### Thank you and have fun :)

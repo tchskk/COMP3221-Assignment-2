@@ -6,7 +6,7 @@ import pickle
 
 import torch
 import torch.nn as nn
-
+torch.manual_seed(-1)
 import random
 
 class Server:
